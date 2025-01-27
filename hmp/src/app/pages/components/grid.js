@@ -90,27 +90,26 @@ function Grid({ people }) {
 
 	return (
 		<div className="w-full">
-			<h1 className="text-center text-2xl font-bold mb-6">
+			<h1 className="text-center text-base font-bold mb-3">
 				Skills and Consensus Scores
 			</h1>
 
 			{loading ? (
-				<p className="text-center text-gray-500">Loading data...</p>
+				<p className="text-center text-gray-500 text-sm">Loading data...</p>
 			) : (
 				<div className="overflow-x-auto">
 					<table className="min-w-full table-auto border-collapse">
 						<thead>
-							<tr className="bg-green-600 text-white">
-								<th className="px-6 py-3 text-left" style={{ width: "250px" }}>
+							<tr className="bg-green-600 text-white text-xs">
+								<th className="px-2 py-1 text-left" style={{ width: "180px" }}>
 									Skill
 								</th>
-								{/* Add empty columns if no people yet */}
 								{processedData.length > 0
 									? processedData.map((person) => (
 											<th
 												key={person.id}
-												className="px-6 py-3"
-												style={{ width: "150px" }}
+												className="px-2 py-1"
+												style={{ width: "80px" }}
 											>
 												{person.name ? person.name.slice(0, 3) : "N/A"}
 											</th>
@@ -120,8 +119,8 @@ function Grid({ people }) {
 											.map((_, index) => (
 												<th
 													key={index}
-													className="px-6 py-3"
-													style={{ width: "150px" }}
+													className="px-2 py-1"
+													style={{ width: "80px" }}
 												>
 													N/A
 												</th>
@@ -130,32 +129,34 @@ function Grid({ people }) {
 						</thead>
 						<tbody>
 							{targetSkills.map((skill, index) => (
-								<tr key={`${skill}-${index}`} className="hover:bg-gray-200">
-									<td className="px-6 py-4" style={{ width: "250px" }}>
+								<tr
+									key={`${skill}-${index}`}
+									className="hover:bg-gray-200 text-xs"
+								>
+									<td className="px-2 py-1" style={{ width: "180px" }}>
 										{skill}
 									</td>
 									{processedData.length > 0
 										? processedData.map((person, personIndex) => (
 												<td
 													key={`${personIndex}-${skill}`}
-													className="px-6 py-4"
+													className="px-2 py-1 text-center"
 													style={{
 														backgroundColor: getCellColor(person[skill]),
 														color: person[skill] === 0 ? "black" : "white",
-														width: "150px",
+														width: "80px",
 													}}
 												>
 													{person[skill]}
 												</td>
 										  ))
-										: // Empty cells while loading
-										  Array(people.length)
+										: Array(people.length)
 												.fill(null)
 												.map((_, index) => (
 													<td
 														key={`${index}-${skill}`}
-														className="px-6 py-4"
-														style={{ width: "150px" }}
+														className="px-2 py-1"
+														style={{ width: "80px" }}
 													></td>
 												))}
 								</tr>

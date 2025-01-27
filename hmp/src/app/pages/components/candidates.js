@@ -1,4 +1,3 @@
-// Candidates.jsx
 "use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -32,20 +31,20 @@ function Candidates({ people, setPeople }) {
 	};
 
 	return (
-		<div className="space-y-4">
+		<div className="space-y-2 h-32 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
 			{data.map((item) => {
 				const isAdded = clickedIds.has(item.id);
 				return (
 					<div
 						key={item.id}
-						className="flex justify-between items-center bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
+						className="flex justify-between items-center bg-white p-1 rounded-md shadow-sm hover:shadow-md transition-all"
 					>
-						<span className="text-lg font-semibold text-gray-800">
+						<span className="text-xs font-medium text-gray-700">
 							{item.name}
 						</span>
 						<button
 							onClick={() => handleButtonClick(item)}
-							className={`px-4 py-2 rounded-lg text-white transition-colors duration-200 ${
+							className={`px-2 py-1 text-xs rounded-md text-white transition-colors duration-200 ${
 								isAdded
 									? "bg-red-500 hover:bg-red-600"
 									: "bg-green-500 hover:bg-green-600"
